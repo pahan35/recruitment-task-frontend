@@ -3,6 +3,7 @@ import cn from 'clsx';
 
 import arrow from '../assets/svg/arrow.svg';
 import { useToggle } from '../hooks/useToggle';
+import { escapeRegExp } from '../utils/regex';
 
 type AutosuggestionSelectProps = {
   characters: string[];
@@ -22,7 +23,7 @@ export function AutosuggestionSelect({
       return characters;
     }
     return characters.filter((character) =>
-      character.match(new RegExp(search, 'i'))
+      character.match(new RegExp(escapeRegExp(search), 'i'))
     );
   }, [characters, search]);
 
