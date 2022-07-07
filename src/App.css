@@ -43,17 +43,17 @@
   padding: 1.2rem 1.6rem;
 }
 
+.options__container {
+  padding: 2rem;
+}
+
 .options {
   width: 300px;
-  border: 1px solid rgba(0, 0, 0, 0.06);;
-  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   position: relative;
 }
 
 .input {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   line-height: 2.8rem;
   padding: 1.2rem;
@@ -66,7 +66,6 @@
 }
 
 .no-results__container {
-  margin-top: 5.2rem;
   font-size: 1.4rem;
   text-align: center;
 }
@@ -75,7 +74,7 @@
   list-style: none;
   margin:0;
   padding: 0;
-  margin-top: 4.2rem;
+  margin-top: -1rem;
 }
 
 .list__item:not(:last-child) {
