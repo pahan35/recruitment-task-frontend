@@ -50,23 +50,27 @@ export function AutosuggestionSelect({
               onChange={(e) => setSearch(e.target.value)}
               value={search}
             />
-            <ul className="list">
-              {filteredCharacters.map((character) => (
-                <li
-                  key={character}
-                  className={cn('list__item', {
-                    'list__item--selected': character === selectedCharacter,
-                  })}
-                  onClick={() =>
-                    setSelectedCharacter((prevSelectedCharacter) =>
-                      prevSelectedCharacter === character ? null : character
-                    )
-                  }
-                >
-                  {character}
-                </li>
-              ))}
-            </ul>
+            {filteredCharacters.length === 0 ? (
+              <div className="no-results__container">No results</div>
+            ) : (
+              <ul className="list">
+                {filteredCharacters.map((character) => (
+                  <li
+                    key={character}
+                    className={cn('list__item', {
+                      'list__item--selected': character === selectedCharacter,
+                    })}
+                    onClick={() =>
+                      setSelectedCharacter((prevSelectedCharacter) =>
+                        prevSelectedCharacter === character ? null : character
+                      )
+                    }
+                  >
+                    {character}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
       </div>

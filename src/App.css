@@ -8,6 +8,7 @@
 
 
 .trigger {
+  width: 300px;
   display: flex;
   position: relative;
   align-items: center;
@@ -62,6 +63,12 @@
   color: rgba(0, 0, 0, 0.87);
   border: none;
   outline: none;
+}
+
+.no-results__container {
+  margin-top: 5.2rem;
+  font-size: 1.4rem;
+  text-align: center;
 }
 
 .list {
