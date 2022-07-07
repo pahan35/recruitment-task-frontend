@@ -34,6 +34,10 @@
   margin-left: 0.6rem;
 }
 
+.arrow--reversed {
+  transform: rotate(180deg);
+}
+
 .searcher {
   padding: 1.2rem 1.6rem;
 }

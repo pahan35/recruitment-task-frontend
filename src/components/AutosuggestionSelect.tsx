@@ -36,7 +36,11 @@ export function AutosuggestionSelect({
           onClick={() => toggle()}
         >
           Find Rick & Morty Characters
-          <img src={arrow} alt="chevron down icon" className="arrow" />
+          <img
+            src={arrow}
+            alt="chevron down icon"
+            className={cn('arrow', { 'arrow--reversed': isActive })}
+          />
         </button>
         {isActive && (
           <div className="options">
