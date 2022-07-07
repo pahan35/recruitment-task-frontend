@@ -2,10 +2,12 @@ import { AutosuggestionSelect } from './components/AutosuggestionSelect';
 
 import './App.css';
 
-export default function App() {
+const CHARACTERS = ['Baby Wizard', 'Scroopy Noopers', 'Running Bird', 'Gotron'];
+
+export default function App(): JSX.Element {
   return (
     <main>
-      <AutosuggestionSelect />
+      <AutosuggestionSelect characters={CHARACTERS} />
     </main>
   );
 }
