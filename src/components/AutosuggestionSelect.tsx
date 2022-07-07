@@ -1,10 +1,31 @@
+import { useMemo, useState } from 'react';
 import cn from 'clsx';
 
 import arrow from '../assets/svg/arrow.svg';
 import { useToggle } from '../hooks/useToggle';
+import { escapeRegExp } from '../utils/regex';
 
-export function AutosuggestionSelect() {
+type AutosuggestionSelectProps = {
+  characters: string[];
+};
+
+export function AutosuggestionSelect({
+  characters,
+}: AutosuggestionSelectProps): JSX.Element {
   const [isActive, toggle] = useToggle();
+  const [search, setSearch] = useState('');
+  const [selectedCharacter, setSelectedCharacter] = useState<string | null>(
+    null
+  );
+
+  const filteredCharacters = useMemo(() => {
+    if (!search) {
+      return characters;
+    }
+    return characters.filter((character) =>
+      character.match(new RegExp(escapeRegExp(search), 'i'))
+    );
+  }, [characters, search]);
 
   return (
     <div className="wrapper">
@@ -16,19 +37,43 @@ export function AutosuggestionSelect() {
           onClick={() => toggle()}
         >
           Find Rick & Morty Characters
-          <img src={arrow} alt="chevron down icon" className="arrow" />
+          <img
+            src={arrow}
+            alt="chevron down icon"
+            className={cn('arrow', { 'arrow--reversed': isActive })}
+          />
         </button>
         {isActive && (
           <div className="options">
-            <input className="input" placeholder="Type to search..." />
-            <ul className="list">
-              <li className="list__item">Baby Wizard</li>
-              <li className="list__item list__item--selected">
-                Scroopy Noopers
-              </li>
-              <li className="list__item">Running Bird</li>
-              <li className="list__item">Gotron</li>
-            </ul>
+            <input
+              className="input"
+              placeholder="Type to search..."
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <div className="options__container">
+              {filteredCharacters.length === 0 ? (
+                <div className="no-results__container">No results</div>
+              ) : (
+                <ul className="list">
+                  {filteredCharacters.map((character) => (
+                    <li
+                      key={character}
+                      className={cn('list__item', {
+                        'list__item--selected': character === selectedCharacter,
+                      })}
+                      onClick={() =>
+                        setSelectedCharacter((prevSelectedCharacter) =>
+                          prevSelectedCharacter === character ? null : character
+                        )
+                      }
+                    >
+                      {character}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         )}
       </div>

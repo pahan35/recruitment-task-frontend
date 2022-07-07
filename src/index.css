@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
+:root {
+  --border-width: 1px;
+  --theme-color: rgb(229, 246, 253);
+}
+
 html {
   font-size: 10px;
   box-sizing: border-box;
